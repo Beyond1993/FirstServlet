@@ -1,0 +1,19 @@
+{
+  "name": "resource",
+  "authors": [
+    "Wayne"
+  ],
+  "description": "this is html js css files",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

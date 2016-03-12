@@ -1,0 +1,11 @@
+<web-app>
+	<servlet>
+    <servlet-name>myservlet</servlet-name>
+    <servlet-class>vocabtrainer.interactionmodule.WelcomeServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>myservlet</servlet-name>
+    <url-pattern>/mywelcomeservlet</url-pattern>
+  </servlet-mapping>
+</web-app>
