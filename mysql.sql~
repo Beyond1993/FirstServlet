@@ -15,5 +15,3 @@ CREATE TABLE `words` (
 `wordstoken` int(50) DEFAULT NULL,
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
-insert into user (username,password) value('feng',password('root'));
