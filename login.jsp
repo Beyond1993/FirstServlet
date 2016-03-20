@@ -45,7 +45,7 @@
    <br>
    <input type="submit"  value="login">
    <input type="reset" value="cancel"/>
-   <input type="hidden" name="clientToken" value="${clientToken}>" /> 
+   <input type="hidden" name="clientToken" value="${sessionScope.clientToken}" /> 
 </form>
 
 </body>

@@ -22,7 +22,6 @@ import vocabtrainer.interactionmodule.user;
 
 public class loginServlet extends HttpServlet {
 
-    private String clientToken;  
     /**
      * Constructor of the object.
      */
@@ -55,35 +54,33 @@ public class loginServlet extends HttpServlet {
      * @return 
      */  
     private boolean validateToken(HttpServletRequest request)  
-    {  
-        boolean bl = false;  
+    {         
         try  
         {  
             String sessionToken = (String) request.getSession().getAttribute(  
-                    "token");  
-            if (!sessionToken.isEmpty() && !clientToken.equals(sessionToken))  
-            {  
-                // 禁止刷新  
-                bl = false;  
-            }  
+                    "clientToken");  
+            String clientToken = (String) request.getParameter("clientToken");
+            System.out.println("old session token: " + sessionToken);                      
+            System.out.println("old client token: " + clientToken);     
+            
+            if (null == sessionToken || sessionToken.isEmpty() 
+            		|| clientToken.equals(sessionToken))  {
+            	
+            	String sToken = UUID.randomUUID().toString().toUpperCase();  
+                request.getSession().setAttribute("clientToken", sToken);     
+                System.out.println("new token: " + (String) request.getSession().getAttribute(  
+                        "clientToken"));
+            	return true;         
+            }
             else  
-            {  
-                // 正常的操作  
-                bl = true;  
-                  
-                // 生成新令牌  
-                String sToken = UUID.randomUUID().toString().toUpperCase();  
-                request.getSession().setAttribute("clientToken", sToken);  
-                // 替换旧令牌  
-                request.getSession().setAttribute("token", sToken);  
-            }  
+            	return false;
         }  
         catch (Exception e)  
         {  
             //LOGGER.error(e.getMessage());  
-        }  
-          
-        return bl;  
+        	return false;
+        }         
+        
     } 
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -106,10 +103,10 @@ public class loginServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-         // if(!validateToken(request)){
-         //    request.getRequestDispatcher("error.jsp").forward(request, response);
-         // }
-
+         if(!validateToken(request)) {
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+            return;
+         }      
                 
 
          String username = request.getParameter("username");
@@ -126,13 +123,13 @@ public class loginServlet extends HttpServlet {
          {
              request.getSession().setAttribute("username", request.getParameter("username"));      //将user放在Attribute中
              request.getRequestDispatcher("index.jsp").forward(request, response); //校验用户名密码正确，跳转到welcome.jsp
-              
+            
          }
          else
-         {
+        
              request.getRequestDispatcher("error.jsp").forward(request, response);  //校验用户名密码不正确，跳转到index.jsp
-             
-         }
+            
+     
          
     }
     /**
