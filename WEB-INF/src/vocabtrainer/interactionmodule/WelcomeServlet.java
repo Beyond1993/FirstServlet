@@ -25,6 +25,7 @@ public class WelcomeServlet extends HttpServlet {
             throws ServletException, IOException {
 		
 		RunVocabTrainerNoSockets run = new RunVocabTrainerNoSockets();
+
         // 设置响应内容类型
 		response.setContentType("text/html;charset=UTF-8");
 

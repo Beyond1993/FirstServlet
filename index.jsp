@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
 <meta charset="utf-8">
@@ -20,6 +21,27 @@
 </head>
 <body>
 
+<%	
+	response.setHeader("Cache-Control","no-cache"); 
+    response.setHeader("Cache-Control","no-store");  //和上面的参数不一样
+    response.setDateHeader("Expires", -1); 
+    response.setHeader("Pragma","no-cache"); 
+
+   //  if(session==null || session.getAttribute("username")==null){
+   //   	response.sendRedirect("login.jsp");
+  	// }
+
+    String username = (String)session.getAttribute("username");
+	out.println(username);
+	if(username == null){
+		out.println("error");
+		response.sendRedirect("login.jsp");
+	}else{
+		out.println("login");
+		//response.sendRedirect("login.jsp");
+	}	
+%>
+
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span12">
@@ -34,10 +56,11 @@
 					<a href="#">信息</a>
 				</li>
 				<li class="dropdown pull-right">
-					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">下拉<strong class="caret"></strong></a>
+
+					 <a href="#" data-toggle="dropdown" class="dropdown-toggle"><%=session.getAttribute("username")%><strong class="caret"></strong></a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="#">操作</a>
+							<a href="logout.jsp">logout</a>
 						</li>
 						<li>
 							<a href="#">设置栏目</a>
