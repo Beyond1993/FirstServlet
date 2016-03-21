@@ -47,13 +47,13 @@
 		<div class="span12">
 			<ul class="nav nav-tabs">
 				<li class="active">
-					<a href="#">首页</a>
+					<a href="#">Home</a>
 				</li>
 				<li>
-					<a href="#">资料</a>
+					<a href="#">Deck</a>
 				</li>
 				<li class="disabled">
-					<a href="#">信息</a>
+					<a href="#">Information</a>
 				</li>
 				<li class="dropdown pull-right">
 
@@ -81,7 +81,7 @@
 	<div class="row-fluid">
 		<div class="span4">
 			<img alt="140x140" src="resource/img/a.jpg" id="word"/>
-			<button id="connect" onclick="connect();">Connect</button>
+			<button id="connect" onclick="connect();">start</button>
 			<!--<form action="mywelcomeservlet" method="GET">-->
 			
 			<div class="btn-group">
